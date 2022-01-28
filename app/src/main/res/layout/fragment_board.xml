@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="6dp">
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/todo" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        style="@style/LottieAnimationView"/>
 
 
     <TextView
         android:id="@+id/text_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        style="@style/TextView_welcome_to"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="90dp"
         android:text="Welcome to productive life !"
-        android:textAlignment="center"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view" />
@@ -36,47 +24,27 @@
 
     <TextView
         android:id="@+id/description_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        android:text="Collaboration with students"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
-
+        style="@style/TextView_collaboration"
+        android:text="Collaboration with students" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/skip_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:id="@+id/skip_btn_one"
+        style="@style/MaterialButton"
         android:text="Skip"
-        android:elevation="8dp"
-        android:layout_marginTop="60dp"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_light"
         app:icon="@drawable/ic_arrow_forward"
         app:iconGravity="textEnd"
         app:iconTint="@android:color/holo_blue_light" />
 
     <TextView
         android:id="@+id/hint_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="You have an account already?"
-        android:textAlignment="center"
-        android:textColor="@android:color/darker_gray" />
+        style="@style/YouHaveAnAccountAlready"
+        android:text="@string/you_have_an_account_already" />
 
     <TextView
         android:id="@+id/sign_in_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign in"
-        android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_light" />
+        style="@style/MaterialButton"
+
+        android:text="Sign in" />
 
 </LinearLayout>

@@ -16,7 +16,7 @@ public interface TaskDao {
     void insert(TaskModel taskModel);
 
     @Delete
-    void delete(TaskModel Model);
+    void delete(TaskModel model);
 
 
     @Query("SELECT* FROM task_model")

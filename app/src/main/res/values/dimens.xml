@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="default_top_margin">12dp</dimen>
+    <dimen name="bid_text_size">18sp</dimen>
+</resources>

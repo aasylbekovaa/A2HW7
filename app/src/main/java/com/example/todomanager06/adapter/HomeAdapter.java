@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomanager06.databinding.ItemTaskBinding;
-import com.example.todomanager06.interfaces.LongClickListener;
+import com.example.todomanager06.interfaces.OnLongClickListener;
 import com.example.todomanager06.model.TaskModel;
 
 import java.util.ArrayList;
@@ -19,16 +19,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
     private ItemTaskBinding binding;
 
     List<TaskModel> list = new ArrayList<>();
-    LongClickListener longClickListener;
+    OnLongClickListener longClickListener;
 
-    public void setLongClickListener(LongClickListener longClickListener) {
+    public void setLongClickListener(OnLongClickListener longClickListener) {
         this.longClickListener = longClickListener;
     }
 
     public HomeAdapter(List<TaskModel> list) {
         this.list = list;
     }
-
 
     @NonNull
     @Override
@@ -63,7 +62,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
                 @Override
                 public boolean onLongClick(View view) {
                     longClickListener.onItemPress(model);
-                    return true;
+                    return false;
                 }
             });
         }

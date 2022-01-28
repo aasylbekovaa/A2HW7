@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TodoManager06</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_task">Создать задачу </string>
+    <string name="every_week">Каждую неделю</string>
+    <string name="you_have_an_account_already">You have an account already?</string>
 </resources>
