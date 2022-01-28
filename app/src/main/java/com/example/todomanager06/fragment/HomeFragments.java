@@ -19,13 +19,13 @@ import com.example.todomanager06.databinding.FragmentHomeBinding;
 import com.example.todomanager06.model.TaskModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragments extends Fragment {
     HomeAdapter homeAdapter;
     private FragmentHomeBinding binding;
     
     private ArrayList<TaskModel> taskModels = new ArrayList<>();
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

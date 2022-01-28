@@ -18,19 +18,15 @@ import com.example.todomanager06.client.ViewPagerClient;
 import com.example.todomanager06.databinding.FragmentBoardBinding;
 import com.example.todomanager06.databinding.FragmentMainBoardBinding;
 import com.example.todomanager06.interfaces.ItemClickListener;
-import com.example.todomanager06.interfaces.LongClickListener;
+import com.example.todomanager06.interfaces.OnLongClickListener;
 import com.example.todomanager06.model.ViewPagerModel;
 
 import java.util.ArrayList;
 
-
 public class MainBoardFragment extends Fragment implements ItemClickListener {
-    LongClickListener longClickListener;
-    ItemClickListener listener;
     private FragmentMainBoardBinding binding;
     ViewPagerAdapter adapter;
     ArrayList<ViewPagerModel> list = new ArrayList<>();
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +52,7 @@ public class MainBoardFragment extends Fragment implements ItemClickListener {
 
     private void getData() {
         list = ViewPagerClient.getPagerlist();
-        adapter = new ViewPagerAdapter(list, listener, longClickListener);
+        adapter = new ViewPagerAdapter(list,this);
         binding.viewpager.setAdapter(adapter);
         binding.dotsIndicator.setViewPager2(binding.viewpager);
 

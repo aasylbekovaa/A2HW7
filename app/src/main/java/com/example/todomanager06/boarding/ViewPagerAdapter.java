@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomanager06.databinding.FragmentBoardBinding;
 import com.example.todomanager06.interfaces.ItemClickListener;
-import com.example.todomanager06.interfaces.LongClickListener;
 import com.example.todomanager06.model.ViewPagerModel;
 
 import java.util.ArrayList;
@@ -17,12 +16,10 @@ import java.util.ArrayList;
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder> {
     ArrayList<ViewPagerModel> listPager;
     ItemClickListener listener;
-    LongClickListener longClickListener;
 
-    public ViewPagerAdapter(ArrayList<ViewPagerModel> listPager, ItemClickListener listener, LongClickListener longClickListener) {
+    public ViewPagerAdapter(ArrayList<ViewPagerModel> listPager, ItemClickListener listener) {
         this.listPager = listPager;
         this.listener = listener;
-        this.longClickListener = longClickListener;
 
     }
 
@@ -53,9 +50,8 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         public void onBind(ViewPagerModel model) {
             binding.text1.setText(model.getTitle());
             binding.descriptionTv.setText(model.getDescription());
-            binding.imageView.setImageResource(model.getImage());
-            binding.skipBtn.setText(model.getSkip());
-            binding.skipBtn.setOnClickListener(new View.OnClickListener() {
+            binding.animationView.setAnimation(model.getImage());
+            binding.skipBtnOne.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.itemClick();
