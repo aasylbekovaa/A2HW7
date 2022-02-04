@@ -62,7 +62,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
                 @Override
                 public boolean onLongClick(View view) {
                     longClickListener.onItemPress(model);
-                    return false;
+                    return true;
                 }
             });
         }

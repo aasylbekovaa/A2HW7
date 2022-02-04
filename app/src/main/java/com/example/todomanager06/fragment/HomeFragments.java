@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.todomanager06.App;
+import com.example.todomanager06.R;
 import com.example.todomanager06.adapter.HomeAdapter;
 import com.example.todomanager06.databinding.FragmentHomeBinding;
 import com.example.todomanager06.model.TaskModel;
@@ -47,6 +49,12 @@ public class HomeFragments extends Fragment {
             public void onClick(View view) {
                 CreateTaskFragment createTaskFragment = new CreateTaskFragment();
                 createTaskFragment.show(requireActivity().getSupportFragmentManager(), "");
+            }
+        });
+        binding.viewPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(requireView()).navigate(R.id.profileFragment);
             }
         });
     }

@@ -143,4 +143,8 @@ public class RegistrationFragment extends Fragment {
                 });
     }
 
+    private void updateUI(FirebaseUser user){
+
+    }
+
 }

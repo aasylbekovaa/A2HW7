@@ -16,14 +16,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.todomanager06.App;
 import com.example.todomanager06.R;
 import com.example.todomanager06.databinding.FragmentCreateTaskBinding;
 import com.example.todomanager06.model.TaskModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateTaskFragment extends BottomSheetDialogFragment implements DatePickerDialog.OnDateSetListener {
     FragmentCreateTaskBinding binding;
@@ -32,7 +39,7 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
     private int startDay;
     private String date;
     private String repeat;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -71,11 +78,24 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
     }
 
 
-
-    private void writeToDataBase(){
+    private void writeToDataBase() {
         String text = binding.taskEd.getText().toString();
-        TaskModel taskModel = new TaskModel(text,date,repeat);
+        TaskModel taskModel = new TaskModel(text, date, repeat);
         App.getApp().getDb().taskDao().insert(taskModel);
+        Map<String, String> task = new HashMap<>();
+        task.put("task", taskModel.getTask());
+        task.put("date", taskModel.getDate());
+        task.put("repeat", taskModel.getRepeat());
+
+        db.collection("tasks").add(task).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            }
+        });
     }
 
     private void showDatePickerDialog() {
@@ -105,51 +125,58 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
         never.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.chooseRepeatTv.setText("Never");
+                repeat = "never";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
         everyDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.chooseRepeatTv.setText("Every day");
+                repeat = "Every day";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
         everyWeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String everyWeek = "Every week";
-                binding.chooseRepeatTv.setText(everyWeek);
-                repeat = everyWeek;
+                repeat = "Every week";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
         everyMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.chooseRepeatTv.setText("Every month");
+                repeat = "Every month";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
         everyYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.chooseRepeatTv.setText("Every year");
+                repeat = "Every year";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
         custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.chooseRepeatTv.setText("Custom");
+                repeat = "Custom";
+                binding.chooseRepeatTv.setText(repeat);
                 alertDialog.dismiss();
             }
         });
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         binding.chooseDateTv.setText("" + day + "." + month + 1 + "." + year);
+        date = ("" + day + "." + month + 1 + "." + year);
+
     }
 }

@@ -6,8 +6,9 @@ import androidx.room.PrimaryKey;
 
     @Entity(tableName = "task_model")
     public class TaskModel {
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         public int id;
+
         public String task;
         public String date;
         public String repeat;
